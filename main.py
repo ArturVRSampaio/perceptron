@@ -25,17 +25,18 @@ def step_activation(value: float) -> int:
 
 
 class Neuron:
-    def __init__(self, bias: float, weights: [float]):
+    def __init__(self, bias: float, weights: [float], activation: callable = step_activation):
         self.bias = bias
         self.weights = weights
+        self.activation = activation
 
     def __str__(self):
         return "bias: " + str(self.bias) + ". weights =" + str(self.weights)
 
-    def predict(self, inputs: [float], activation_type: callable) -> int:
+    def predict(self, inputs: [float]) -> int:
         inputs_weights = zip(self.weights, inputs)
         weighted_sum = sum(weight * input for weight, input in inputs_weights) + self.bias
-        return activation_type(weighted_sum)
+        return self.activation(weighted_sum)
 
 
 def is_neuron_ready(neuron: Neuron, input_array: [[float, float, float]], labels: [float],
@@ -43,7 +44,7 @@ def is_neuron_ready(neuron: Neuron, input_array: [[float, float, float]], labels
     error_flag = True
     for key, input in enumerate(input_array):
         label = labels[key]
-        prediction = neuron.predict(input, step_activation)
+        prediction = neuron.predict(input)
         if label != prediction:
             error_flag = False
         if verbose:
@@ -57,7 +58,7 @@ def train(neuron: Neuron, input_array: [[float]], labels: [float], learning_rate
     for epoch in range(1, epochs + 1):
         for key, input in enumerate(input_array):
             label = labels[key]
-            prediction = neuron.predict(input, step_activation)
+            prediction = neuron.predict(input)
             error = label - prediction
 
             for i in range(len(input)):
