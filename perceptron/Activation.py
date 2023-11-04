@@ -1,3 +1,5 @@
+import math
+
 
 def step_activation(value: float) -> int:
     if value >= 0:
@@ -5,3 +7,6 @@ def step_activation(value: float) -> int:
     else:
         return 0
 
+
+def sigmoid(value: float):
+    return 1 / (1 + math.exp(-value))

@@ -16,7 +16,7 @@ def is_neuron_ready(neuron: Neuron, input_array: [[float, float, float]], labels
     return error_flag
 
 
-def train(neuron: Neuron, input_array: [[float]], labels: [float], learning_rate=0.1, epochs=500):
+def train(neuron: Neuron, input_array: [[float]], labels: [float], learning_rate=0.1, epochs=8000):
     for epoch in range(1, epochs + 1):
         for key, input in enumerate(input_array):
             label = labels[key]
