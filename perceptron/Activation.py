@@ -14,3 +14,7 @@ def sigmoid(value: float) -> float:
 
 def linear(value: float) -> float:
     return value
+
+
+def tanh(value: float) -> float:
+    return (math.exp(value) - math.exp(-value)) / (math.exp(value) + math.exp(-value))
