@@ -1,8 +1,8 @@
-from perceptron.Activation import step_activation
+from perceptron.Activation import step
 
 
 class Neuron:
-    def __init__(self, bias: float, weights: [float], activation: callable = step_activation):
+    def __init__(self, bias: float, weights: [float], activation: callable = step):
         self.bias = bias
         self.weights = weights
         self.activation = activation
